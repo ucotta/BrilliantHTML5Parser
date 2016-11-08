@@ -1,5 +1,5 @@
 # Roadmap
-* Add CSS prevention cheat sheet by OWASP: https://www.owasp.org/index.php/XSS_%28Cross_Site_Scripting%29_Prevention_Cheat_Sheet
+* Add XSS prevention cheat sheet by OWASP: https://www.owasp.org/index.php/XSS_%28Cross_Site_Scripting%29_Prevention_Cheat_Sheet
 
 
 # What is this
