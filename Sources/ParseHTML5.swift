@@ -40,6 +40,24 @@ let DOCUMENT_DOESNT_START_WITH_DOCTYPE = "HTML Document doesnt start with correc
 public class ParserHTML5 {
     public var root:HTMLNode  //= TagHTML(tagName: "")
     var html: String
+    
+    
+    public func getNextNodeWithAtt(att: String) -> HTMLNode? {
+        return root.getNextNodeWithAtt(att: att)
+    }
+    
+    public func getNextAid() -> HTMLNode? {
+        return root.getNextAid()
+    }
+    
+    public func getNextTid() -> HTMLNode? {
+        return root.getNextTid()
+    }
+    
+    public func getNextJSid() -> HTMLNode? {
+        return root.getNextJSid()
+    }
+    
     public var toHTML: String {
         get {
             return root.toHTML
