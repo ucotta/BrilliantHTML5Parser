@@ -89,11 +89,12 @@ public class ParserHTML5 {
 
     public func reparseNode(node: HTMLNode, html:String) {
         self.html = html
-        let newNode = startParsing()
         
-        newNode.setAfterNode(node: node)
+        while !self.html.isEmpty {
+            let newNode = startParsing()
+            newNode.setBeforeNode(node: node)
+        }
         node.parentNode = nil
-        self.html = ""
     }
     
 
