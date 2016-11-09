@@ -143,7 +143,7 @@ public class HTMLNode: Node {
         get {
             switch tagClass {
             case .comment, .text, .noDefined:
-                return rawHTML
+                return preTag + rawHTML + posTag
             default:
                 var html = preTag
                 html += "<\(tagName)"
