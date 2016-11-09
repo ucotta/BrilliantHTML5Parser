@@ -16,6 +16,7 @@ let notClosingTags: [String] = "!DOCTYPE area base br col embed hr img input key
 
 extension Node {
     public var toHTML: String { get { return "" } }
+    public var innerHTML: String { get { return "" } }
 }
 
 public class HTMLNode: Node {
@@ -175,6 +176,27 @@ public class HTMLNode: Node {
         }
     }
 
+    
+    
+    public var innerHTML: String {
+        get {
+            switch tagClass {
+            case .comment, .text, .noDefined:
+                return preTag + rawHTML + posTag
+            default:
+                var html = ""
+                for node in content {
+                    if let n:HTMLNode = node as? HTMLNode {
+                        html += n.toHTML
+                    }
+                    
+                }
+                
+                return html
+            }
+        }
+    }
+    
 
 
     public var debug: String {

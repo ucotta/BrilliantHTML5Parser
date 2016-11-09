@@ -161,6 +161,30 @@ class BrilliantHTML5ParserTest: XCTestCase {
         XCTAssertEqual(HTMLNode.totalNodes, 0, "Error leak of nodes!!")
     }
     
+    func test7_innerHTML() {
+        let RESULT_TEST = "<!DOCTYPE html><html lang=\"en\"><head><title>Welcome title!!</title></head><body><h1>Welcome!</h1>text!<!--this is a comment--></body></html>"
+        
+
+        
+        do {
+            let parser = _createBasicHTML()
+            if let div = parser.root.getNextNodeWithAtt(att: "dupl") {
+                div.addNode(node: TextHTML(text: "text!"))
+                div.addNode(node: CommentHTML(comment: "this is a comment"))
+                div.replaceBy(string: div.innerHTML)
+                XCTAssertEqual(div.innerHTML, "text!<!--this is a comment-->"
+, "Error in innerHTML")
+                
+                XCTAssertEqual(parser.toHTML, RESULT_TEST, "Error in innerHTML")
+            } else {
+                XCTFail("reparseNode no realiced because error in getNextNodeWitAtt")
+                
+            }
+        }
+        XCTAssertEqual(HTMLNode.totalNodes, 0, "Error leak of nodes!!")
+        
+    }
+    
     /*
     func test_checkBlanksConsistecy() {
         do {
