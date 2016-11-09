@@ -134,6 +134,17 @@ class BrilliantHTML5ParserTest: XCTestCase {
         XCTAssertEqual(HTMLNode.totalNodes, 0, "Error leak of nodes!!")
     }
     
+    func test5_getAllByTagName() {
+        do {
+            let parser = _createBasicHTML()
+            var divs = parser.getAllBy(tagName: "div")
+            
+            XCTAssertEqual(divs.count, 1)
+            XCTAssertEqual(divs.popLast()?.tagName, "div")
+        }
+        XCTAssertEqual(HTMLNode.totalNodes, 0, "Error leak of nodes!!")
+    }
+    
     /*
     func test_checkBlanksConsistecy() {
         do {
