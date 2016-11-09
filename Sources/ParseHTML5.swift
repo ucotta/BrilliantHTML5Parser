@@ -87,11 +87,7 @@ public class ParserHTML5 {
         root = DocType()
     }
 
-    public func loadIncludes() {
-
-    }
-    
-    func reparseNode(node: HTMLNode, html:String) {
+    public func reparseNode(node: HTMLNode, html:String) {
         self.html = html
         let newNode = startParsing()
         
