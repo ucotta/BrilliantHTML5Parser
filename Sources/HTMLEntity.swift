@@ -108,6 +108,24 @@ public class HTMLNode: Node {
     public func getNextJSid() -> HTMLNode? {
         return getNextNodeWithAtt(att: "jsid")
     }
+    
+    public func getAllBy(tagName: String) -> [HTMLNode] {
+        var nodes: [HTMLNode] = []
+        
+        if self.tagName == tagName {
+            nodes.append(self)
+        }
+        
+        for item in self.content {
+            if item is HTMLNode {
+                let node:HTMLNode = item as! HTMLNode
+                nodes += node.getAllBy(tagName: tagName)
+            }
+        }
+        
+        return nodes
+    }
+    
 
     public func replaceBy(string: String) {
         content.removeAll()

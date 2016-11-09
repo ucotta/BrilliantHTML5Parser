@@ -57,6 +57,11 @@ public class ParserHTML5 {
     public func getNextJSid() -> HTMLNode? {
         return root.getNextJSid()
     }
+
+    public func getAllBy(tagName: String) -> [HTMLNode] {
+        return root.getAllBy(tagName: tagName)
+    }
+
     
     public var toHTML: String {
         get {
