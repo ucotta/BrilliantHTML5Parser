@@ -90,6 +90,16 @@ public class ParserHTML5 {
     public func loadIncludes() {
 
     }
+    
+    func reparseNode(node: HTMLNode, html:String) {
+        self.html = html
+        let newNode = startParsing()
+        
+        newNode.setAfterNode(node: node)
+        node.parentNode = nil
+        self.html = ""
+    }
+    
 
     func startParsing() -> HTMLNode {
         var currentStep: ParseStep = .preTag
@@ -160,7 +170,7 @@ public class ParserHTML5 {
                         key = ""
                     }
 
-                        // ATRIBUTO VALUE
+                        // ATTRIBUTE VALUE
                 case "\"" where currentStep == .attributeValue:
                     currentStep = .attributeValueDouble
 
@@ -199,6 +209,7 @@ public class ParserHTML5 {
                 case _ where currentStep == .attributeValueDouble:
                     value.characters.append(c)
 
+                    // CONTENT
                 case "\n" where currentStep == .content:
                     if let node = content {
                         tag.addNode(node: node)
@@ -234,7 +245,7 @@ public class ParserHTML5 {
                     content!.rawHTML.characters.append(c)
 
                 default:
-                    print("ERROR, POR AUQUI NO DEBERIA ENTRAR")
+                    print("You don't exist, go away!")
 
 
                 }
