@@ -1,18 +1,19 @@
-# Roadmap
-* Add XSS prevention cheat sheet by OWASP: https://www.owasp.org/index.php/XSS_%28Cross_Site_Scripting%29_Prevention_Cheat_Sheet
 
-
-# What is this
-This package was designed to parse HTML 5 files for Brilliant Template, but if you want you can use it for your own propouses.
+# What is this?
+This package was designed to parse HTML 5 files for Brilliant Template. However, it can also be used independently.
 
 Attention, this package uses IBM HTML Entities:
 https://github.com/IBM-Swift/swift-html-entities.git
-This package will be removed in future to use OWASP version.
+This package will be replaced by the OWASP XSS Prevention Cheat Sheet.
+
+
+# Shortly...
+* Add XSS prevention cheat sheet by OWASP: https://www.owasp.org/index.php/XSS_%28Cross_Site_Scripting%29_Prevention_Cheat_Sheet
 
 
 # Installation
 
-Create a new directory with this files:
+First step: create a new directory with this files:
 
 
 *Package.swift*
@@ -71,7 +72,7 @@ if let url = URL(string: URLINDEX) {
 
 ```
 
-Now build the project
+Second step: build the project
 
 ```bash
 swift package generate-xcodeproj 
@@ -82,7 +83,7 @@ Open the Xcode project, select the correct scheme and run!
 
 # Usage:
 
-## Create a HTML5 from scratch
+## Create an HTML5 from scratch
 
 ```swift
 
@@ -109,7 +110,7 @@ parser.root.addNode(node: html)
 print(parser.toHTML)
 ```
 
-You will get this (but not tabbed)
+You will get this (but you won't see it tabbed)
 
 ```html
 <!DOCTYPE html>
@@ -125,10 +126,10 @@ You will get this (but not tabbed)
 
 ```
 
-If you want a tabbed result, please, fell free to file a request feature in ISSUES. 
+If you'd like to have a tabbed result, please feel free to request this feature in ISSUES. 
 
 
-## Parse a HTML5 and comment a div 
+## Parsing an HTML5 and commenting a div 
 
 ```swift
 
