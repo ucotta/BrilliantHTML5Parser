@@ -54,7 +54,7 @@ public class HTMLNode: Node {
         newNode.tagName = tagName
         for i in 0..<content.count {
             let newContent: HTMLNode = content[i] as! HTMLNode
-            newNode.content.append(newContent.copyNode())
+            newContent.copyNode().parentNode = newNode
         }
 
         //newNode.content = content
