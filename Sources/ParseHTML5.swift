@@ -11,13 +11,29 @@
 import Foundation
 
 extension String {
-    mutating func removePrefix(prefix: String) {
+    @available(*, unavailable, message: "remove prefix keyword")
+    public mutating func removePrefix(prefix: String) {
+    }
+    @available(*, unavailable, message: "remove suffix keyword")
+    public mutating func removeSuffix(suffix: String) {
+    }
+
+    public mutating func removePrefix(_ prefix: String) {
         if self == prefix {
             self = ""
         } else {
             removeSubrange(startIndex ... index(startIndex, offsetBy: prefix.characters.count-1))
         }
     }
+
+    public mutating func removeSuffix(_ suffix: String) {
+        if self == suffix {
+            self = ""
+        } else {
+            removeSubrange(index(endIndex, offsetBy: -suffix.characters.count) ..< endIndex)
+        }
+    }
+
 }
 
 
@@ -76,7 +92,7 @@ public class ParserHTML5 {
             root.rawHTML = DOCUMENT_DOESNT_START_WITH_DOCTYPE
         } else {
             root = DocType()
-            html.removePrefix(prefix: DocType.FULL_TAG)
+            html.removePrefix(DocType.FULL_TAG)
             while !html.isEmpty {
                 root.addNode(node: startParsing())
             }
@@ -220,7 +236,7 @@ public class ParserHTML5 {
                     if content != nil {
                         tag.addNode(node: content!)
                     }
-                    html.removePrefix(prefix: "/\(tag.tagName)>")
+                    html.removePrefix("/\(tag.tagName)>")
                     return tag
                 case "<" where currentStep == .content:
                     if let node = content {
