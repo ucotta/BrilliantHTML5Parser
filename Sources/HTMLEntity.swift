@@ -81,6 +81,21 @@ public class HTMLNode: Node {
         set(value) { _attributes[key] = value }
     }
 
+    public func findAttributeWithPrefix(_ prefix:String) -> (key: String, value: String)? {
+        let items = _attributes.filter {
+            key, value in
+            return key.hasPrefix(prefix)
+        }
+        if items.count == 0 {
+            return nil
+        }
+
+        var key: String  = items[0].0
+        key.removePrefix(prefix)
+
+        return (key: key, value: items[0].1)
+    }
+
 
     public func getNextNodeWithAtt(att: String) -> HTMLNode? {
         for node in content {
@@ -98,8 +113,24 @@ public class HTMLNode: Node {
     }
 
 
-    public func getNextAid() -> HTMLNode? {
-        return getNextNodeWithAtt(att: "aid")
+    public func getNextNodeWithAtt(prefix: String) -> HTMLNode? {
+        for node in content {
+            if let n:HTMLNode = node as? HTMLNode {
+                if n.findAttributeWithPrefix(prefix) != nil {
+                    return n
+                }
+                if let n2 = n.getNextNodeWithAtt(prefix: prefix) {
+                    return n2
+                }
+            }
+        }
+
+        return nil
+    }
+
+
+    public func getNextBid() -> HTMLNode? {
+        return getNextNodeWithAtt(prefix: "bid")
     }
 
     public func getNextTid() -> HTMLNode? {

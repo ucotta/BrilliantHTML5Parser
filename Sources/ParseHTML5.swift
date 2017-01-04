@@ -62,8 +62,8 @@ public class ParserHTML5 {
         return root.getNextNodeWithAtt(att: att)
     }
     
-    public func getNextAid() -> HTMLNode? {
-        return root.getNextAid()
+    public func getNextBid() -> HTMLNode? {
+        return root.getNextBid()
     }
     
     public func getNextTid() -> HTMLNode? {
