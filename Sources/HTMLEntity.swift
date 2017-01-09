@@ -26,6 +26,9 @@ public class HTMLNode: Node {
     public var preTag: String = ""
     public var posTag: String = ""
     public var tagName: String = ""
+    public var prefixClass: String? = nil
+    public var prefixAttribute: String = ""
+
     var _attributes: [String:String] = [:]
 
     public var content: [Node] = []
@@ -91,6 +94,10 @@ public class HTMLNode: Node {
         }
 
         var key: String  = items[0].0
+        prefixClass = key
+        prefixAttribute = key
+        prefixAttribute.removePrefix(prefix + "-")
+
         key.removePrefix(prefix)
 
         return (key: key, value: items[0].1)
