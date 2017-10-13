@@ -12,8 +12,8 @@
 import PackageDescription
 
 let package = Package(
-    name: "BrilliantHTML5Parser",
-    products: [
+	name: "BrilliantHTML5Parser",
+	products: [
 		.library(
 			name: "BrilliantHTML5Parser",
 			targets: ["BrilliantHTML5Parser"]),
@@ -30,6 +30,6 @@ let package = Package(
 		.testTarget(
 			name: "BrilliantHTML5ParserTests",
 			dependencies: ["BrilliantHTML5Parser", "HTMLEntities"]),
-		]
+	]
 )
 
