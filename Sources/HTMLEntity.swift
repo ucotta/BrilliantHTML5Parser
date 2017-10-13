@@ -89,20 +89,16 @@ public class HTMLNode: Node {
             key, value in
             return key.hasPrefix(prefix)
         }
-        if items.count == 0 {
+        guard let key: String = items.keys.first, let value = items[key] else {
             return nil
         }
 
-        var key: String  = items[0].0
         prefixClass = key
         prefixAttribute = key
         prefixAttribute.removePrefix(prefix + "-")
 
-        key.removePrefix(prefix)
-
-        return (key: key, value: items[0].1)
+        return (key: prefixAttribute, value: value)
     }
-
 
     public func getNextNodeWithAtt(att: String) -> HTMLNode? {
         for node in content {
@@ -119,7 +115,6 @@ public class HTMLNode: Node {
         return nil
     }
 
-
     public func getNextNodeWithAtt(prefix: String) -> HTMLNode? {
         for node in content {
             if let n:HTMLNode = node as? HTMLNode {
@@ -134,7 +129,6 @@ public class HTMLNode: Node {
 
         return nil
     }
-
 
     public func getNextBid() -> HTMLNode? {
         return getNextNodeWithAtt(prefix: "bid")

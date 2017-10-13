@@ -15,6 +15,6 @@ let package = Package(
     targets: [],
     dependencies: [
         .Package(url: "https://github.com/IBM-Swift/swift-html-entities.git", majorVersion: 2, minor: 0)
-    ],
-    exclude: ["Tests"]
+    ]//,
+    //exclude: ["Tests"]
 )

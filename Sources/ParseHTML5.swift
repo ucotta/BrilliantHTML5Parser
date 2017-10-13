@@ -124,8 +124,16 @@ public class ParserHTML5 {
 
         while !html.isEmpty {
             if html.hasPrefix("<!--") {
-                let comment = html.substring(to: html.range(of: "-->")!.upperBound)
-                html = html.substring(from: html.range(of: "-->")!.upperBound)
+				guard let range = html.range(of: "-->") else {
+					// Bad closed, ignoring the rest of the html.
+					print("Found an unclosed comment, the rest of the html will be not processed.")
+					tag.rawHTML = html
+					html = ""
+					continue
+				}
+				
+				let comment = String(html[..<range.upperBound])
+				html = String(html[html.range(of: "-->")!.upperBound...])
                 if tag.tagClass == .tag {
                     tag.addNode(node: CommentHTML(commentWithTag: comment))
                 } else {

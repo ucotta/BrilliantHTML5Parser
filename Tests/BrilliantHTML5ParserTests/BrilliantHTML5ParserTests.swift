@@ -106,7 +106,7 @@ class BrilliantHTML5ParserTest: XCTestCase {
         XCTAssertEqual(HTMLNode.totalNodes, 0, "Error leak of nodes!!")
     }
     
-    func test4_comentaries() {
+    func test4_comments() {
         let RESULT_TEST = "<!DOCTYPE html><html lang=\"en\"><head><title>Welcome title!!</title></head><body><h1>Welcome!</h1><!--<div dupl=\"3\"></div>--></body></html>"
         
         do {
@@ -123,7 +123,7 @@ class BrilliantHTML5ParserTest: XCTestCase {
                 XCTAssertNil(parser.root.getNextNodeWithAtt(att: "dupl"), "Error parser, get div in inside comment")
                 
                 // Now reparse again
-                let parser2 = ParserHTML5(html: parser.toHTML)
+                let parser2 = ParserHTML5(html: String(parser.toHTML.replacingOccurrences(of: "-->", with: "--")))
                 
                 XCTAssertEqual(parser2.toHTML, RESULT_TEST, "Error reparsing with comment")
                 XCTAssertNil(parser2.root.getNextNodeWithAtt(att: "dupl"), "Error parser, get div in inside comment")
@@ -184,7 +184,7 @@ class BrilliantHTML5ParserTest: XCTestCase {
         XCTAssertEqual(HTMLNode.totalNodes, 0, "Error leak of nodes!!")
         
     }
-    
+	
     /*
     func test_checkBlanksConsistecy() {
         do {
