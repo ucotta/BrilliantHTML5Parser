@@ -123,7 +123,7 @@ class BrilliantHTML5ParserTest: XCTestCase {
                 XCTAssertNil(parser.root.getNextNodeWithAtt(att: "dupl"), "Error parser, get div in inside comment")
                 
                 // Now reparse again
-                let parser2 = ParserHTML5(html: String(parser.toHTML.replacingOccurrences(of: "-->", with: "--")))
+                let parser2 = ParserHTML5(html: parser.toHTML)
                 
                 XCTAssertEqual(parser2.toHTML, RESULT_TEST, "Error reparsing with comment")
                 XCTAssertNil(parser2.root.getNextNodeWithAtt(att: "dupl"), "Error parser, get div in inside comment")
