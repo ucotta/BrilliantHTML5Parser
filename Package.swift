@@ -1,3 +1,4 @@
+// swift-tools-version:4.0
 //
 //  Package.swift
 //  BrilliantHTML5Parser
@@ -12,9 +13,23 @@ import PackageDescription
 
 let package = Package(
     name: "BrilliantHTML5Parser",
-    targets: [],
+    products: [
+		.library(
+			name: "BrilliantHTML5Parser",
+			targets: ["BrilliantHTML5Parser"]),
+	],
     dependencies: [
-        .Package(url: "https://github.com/IBM-Swift/swift-html-entities.git", majorVersion: 2, minor: 0)
-    ]//,
-    //exclude: ["Tests"]
+		.package(url: "https://github.com/IBM-Swift/swift-html-entities.git", .upToNextMajor(from: "3.0.0"))
+    ],
+	targets: [
+		// Targets are the basic building blocks of a package. A target defines a module or a test suite.
+		// Targets can depend on other targets in this package, and on products in packages which this package depends on.
+		.target(
+			name: "BrilliantHTML5Parser",
+			dependencies: ["HTMLEntities"]),
+		.testTarget(
+			name: "BrilliantHTML5ParserTests",
+			dependencies: ["BrilliantHTML5Parser", "HTMLEntities"]),
+		]
 )
+
